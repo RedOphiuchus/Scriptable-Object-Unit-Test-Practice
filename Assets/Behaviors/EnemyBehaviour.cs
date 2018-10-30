@@ -12,15 +12,43 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 
 	public FloatReference attackSpeed;
 
+	public ObjectPool enemyObjectPool;
+
 	private float remainingTime = 0.0f;
 
 	private GameEvent onDamage;
+
+	public GameEvent onDeath;
 	
 	void Start()
 	{
-		hp = maxHP.Value;
 		hurtAmnt = Random.Range(50,80);
 		onDamage = ScriptableObject.CreateInstance<GameEvent>();
+		if(enemyObjectPool)
+		{
+			enemyObjectPool.Add(this);
+		}
+		else 
+		{
+			Debug.Log("No enemy pool.");
+		}
+	}
+
+	void OnDestroy()
+	{
+		if(enemyObjectPool)
+		{
+			enemyObjectPool.Remove(this);
+		}
+		else 
+		{
+			Debug.Log("No enemy pool.");
+		}
+	}
+
+	void OnEnable()
+	{
+		hp = maxHP.Value;
 	}
 	void Update()
 	{
@@ -37,10 +65,14 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 		if((hp -= damage) <= 0)
 		{
 			//Then perish
+			onDeath.Raise();
+			gameObject.SetActive(false);
 		}
 		
 		onDamage.Raise();
 	}
+
+
 
 	public int GetHealth()
 	{

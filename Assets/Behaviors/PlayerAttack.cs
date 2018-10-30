@@ -47,13 +47,5 @@ public class PlayerAttack : MonoBehaviour {
 		}
 
 		attackTimer += Time.deltaTime;
-		if(attackTimer >= attackSpeed.Value)
-		{
-			attackTimer = attackSpeed.Value;
-		}
-		else
-		{
-
-		}
 	}
 }

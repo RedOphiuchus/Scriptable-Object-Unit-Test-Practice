@@ -120,3 +120,9 @@ MonoBehaviour:
     UseConstant: 0
     val: {fileID: 11400000, guid: 72817303740964e468b65bc4914dbcc0, type: 2}
     constVal: 0
+  respawnTime:
+    UseConstant: 1
+    val: {fileID: 0}
+    constVal: 0
+  enemyObjectPool: {fileID: 11400000, guid: 320d95f22df3dd244928311859782499, type: 2}
+  onDeath: {fileID: 11400000, guid: e0758f2ca0f601c4fb05adfabd75dee5, type: 2}
