@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbb3a95e77df5f4db31395222db24f2, type: 3}
   m_Name: WeakEnemyAttackSpeed
   m_EditorClassIdentifier: 
-  value: 0.5
+  value: 0.75

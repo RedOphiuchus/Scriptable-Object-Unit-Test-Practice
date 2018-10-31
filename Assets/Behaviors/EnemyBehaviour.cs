@@ -66,6 +66,8 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 		{
 			//Then perish
 			onDeath.Raise();
+			NormalColor();
+			StopAllCoroutines();
 			gameObject.SetActive(false);
 		}
 		
@@ -73,7 +75,22 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 	}
 
 
+	public void Flash()
+	{
+		GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+		StartCoroutine(ResetColor());
+	}
 
+	IEnumerator ResetColor()
+	{
+		yield return new WaitForSeconds(.3f);
+		NormalColor();
+	}
+
+	private void NormalColor()
+	{
+		GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+	}
 	public int GetHealth()
 	{
 		return hp;

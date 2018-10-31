@@ -7,6 +7,8 @@ public class GameEventListener : MonoBehaviour {
 	public GameEvent gameEvent;
 	public UnityEvent response;
 
+	public IntEvent intResponse;
+
 	public void OnEnable()
 	{
 		if(gameEvent)
@@ -26,5 +28,10 @@ public class GameEventListener : MonoBehaviour {
 	public void OnEventRaised()
 	{
 		response.Invoke();
+	}
+
+	public void OnEventRaised(int value)
+	{
+		intResponse.Invoke(value);
 	}
 }
