@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+//Listens for a game event to be raised. It first adds itself to that game events list, then its appropriate
+//OnEventRaised function will be called when it is raised.
 public class GameEventListener : MonoBehaviour {
 	public GameEvent gameEvent;
 	public UnityEvent response;

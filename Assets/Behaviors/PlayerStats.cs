@@ -23,6 +23,4 @@ public class PlayerStats : MonoBehaviour {
 			Lose.Raise();
 		}
 	}
-
-
 }

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//A scriptable object event. Multiple scripts can reference the same event. Some will raise the event, 
+//and when the event is raised, every script that is listening for the event will
+//call some kind of function.
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject 
 {

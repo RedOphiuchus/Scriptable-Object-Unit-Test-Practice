@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script that governs a single enemies behavior.
 public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 	private int hp;
 
