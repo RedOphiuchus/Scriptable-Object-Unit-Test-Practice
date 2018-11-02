@@ -17,10 +17,10 @@ public class EnemyAttackPattern : MonoBehaviour {
 	private int turn = 0;
 
 	public GameEvent onAttack;
+    
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		StartCoroutine(Attack());
 	}
 	
@@ -34,10 +34,5 @@ public class EnemyAttackPattern : MonoBehaviour {
 		}
 		turn = (turn + 1) % enemyPool.list.Count;
 		StartCoroutine(Attack());
-	}
-
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
