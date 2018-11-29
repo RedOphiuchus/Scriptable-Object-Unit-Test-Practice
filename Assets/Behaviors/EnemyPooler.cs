@@ -7,7 +7,6 @@ public class EnemyPooler : MonoBehaviour {
 	public ObjectPool EnemyPool;
 
 	public FloatReference RespawnTime;
-	// Use this for initialization
 
 	public void SpawnNewEnemy()
 	{

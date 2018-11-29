@@ -25,39 +25,44 @@ public class Targeter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
     	ray = myCamera.ScreenPointToRay(Input.mousePosition);
-        
+        UpdateBar();
         if (Physics.Raycast(ray, out hit)) {
-            testBehaviours = hit.transform.gameObject.GetComponents<MonoBehaviour>();
-			bool found = false;
-			if(target != null)
-			{
-					target.onDamageEvent().UnRegisterListener(GetComponent<GameEventListener>());
-			}
-			for (int i = 0; i < testBehaviours.Length; i++)
-			{				
-				if (testBehaviours[i] is ITargetable)
-				{
-					target = (ITargetable)testBehaviours[i];
-					target.onDamageEvent().RegisterListener(GetComponent<GameEventListener>());
-					found = true;
-					UpdateBar();
-					break;
-				}
-			}
-			if(!found)
-			{
-				target = null;
-				UpdateBar();
-			}
-            
-            // Do something with the object that was hit by the raycast.
+            SetTestBehaviours(hit.transform.gameObject.GetComponents<MonoBehaviour>());
+            SetTarget();
         }
 		else
 		{
 			target = null;
-			UpdateBar();
 		}
 	}
+
+    public void SetTestBehaviours(MonoBehaviour[] newBehaviours)
+    {
+        testBehaviours = newBehaviours;
+    }
+
+    public void SetTarget()
+    {
+        bool found = false;
+        if (target != null)
+        {
+            target.onDamageEvent().UnRegisterListener(GetComponent<GameEventListener>());
+        }
+        for (int i = 0; i < testBehaviours.Length; i++)
+        {
+            if (testBehaviours[i] is ITargetable)
+            {
+                target = (ITargetable)testBehaviours[i];
+                target.onDamageEvent().RegisterListener(GetComponent<GameEventListener>());
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            target = null;
+        }
+    }
 
 	public void UpdateBar()
 	{

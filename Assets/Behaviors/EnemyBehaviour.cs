@@ -35,6 +35,11 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 		}
 	}
 
+    public void MakeDamageEvent()
+    {
+        onDamage = ScriptableObject.CreateInstance<GameEvent>();
+    }
+
 	void OnDestroy()
 	{
 		if(enemyObjectPool)

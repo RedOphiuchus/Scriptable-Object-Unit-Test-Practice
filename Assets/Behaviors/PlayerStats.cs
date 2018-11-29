@@ -13,10 +13,21 @@ public class PlayerStats : MonoBehaviour {
 
 	void Start()
 	{
-		hp.Value = maxHP.Value;
+        InitializeFullHealth();
 	}
 
-	public void TakeDamage(int damage)
+    public void Construct(IntReference newMaxHP, IntReference newHP )
+    {
+        maxHP = newMaxHP;
+        hp = newHP;
+    }
+
+    public void InitializeFullHealth()
+    {
+        hp.Value = maxHP.Value;
+    }
+
+    public void TakeDamage(int damage)
 	{
 		if((hp.Value -= damage) <= 0)
 		{
