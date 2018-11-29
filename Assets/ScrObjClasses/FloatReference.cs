@@ -12,6 +12,18 @@ public class FloatReference
 	[SerializeField]
 	private float constVal;
 
+    public FloatReference()
+    {
+        UseConstant = true;
+        constVal = 0.0f;
+    }
+
+    public FloatReference(FloatVariable newVar)
+    {
+        UseConstant = false;
+        val = newVar;
+    }
+
 	public float Value
 	{
 		get{return UseConstant ? constVal : val.value;}

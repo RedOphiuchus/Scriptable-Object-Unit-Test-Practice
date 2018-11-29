@@ -34,9 +34,9 @@ public class ObjectPool : ScriptableObject
 		}
 		if(!created)
 		{
-			Instantiate(prefab, Location, Direction);
+			GameObject newObject = Instantiate(prefab, Location, Direction);
+            Add(newObject.GetComponent<EnemyBehaviour>());
 		}
-
 	}
 
 }

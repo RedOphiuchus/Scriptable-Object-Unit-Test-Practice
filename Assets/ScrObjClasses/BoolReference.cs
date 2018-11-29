@@ -12,6 +12,18 @@ public class BoolReference {
 	[SerializeField]
 	private bool constVal;
 
+    public BoolReference()
+    {
+        UseConstant = true;
+        constVal = false;
+    }
+
+    public BoolReference(BoolVariable value)
+    {
+        UseConstant = false;
+        val = value;
+    }
+
 	public bool Value
 	{
 		get{return UseConstant ? constVal : val.value;}
@@ -23,4 +35,5 @@ public class BoolReference {
 				val.value = value;
 		}
 	}
+
 }
