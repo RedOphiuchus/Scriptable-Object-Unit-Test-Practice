@@ -20,6 +20,9 @@ public class KillCounter : MonoBehaviour {
         }
     }
 
+    //OnDestroy is called right before the object is cleared from memory.
+    //This will happen when a script literally destroys this script or the GameObject it's attached to
+    //Or more likely: when we leave this scene and load a new scene
     public void OnDestroy()
 	{
 		kills.Value = 0;

@@ -23,6 +23,12 @@ public class PlayerAttack : MonoBehaviour {
 	void Start () {
 		myCamera = GetComponent<Camera>();
 	}
+
+    public void Construct(IntReference power, FloatReference attackSpeed)
+    {
+        this.power = power;
+        this.attackSpeed = attackSpeed;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,19 +39,24 @@ public class PlayerAttack : MonoBehaviour {
 				attackTimer = 0f;
 				ray = myCamera.ScreenPointToRay(Input.mousePosition);
 				if (Physics.Raycast(ray, out hit)) {
-            		testBehaviours = hit.transform.gameObject.GetComponents<MonoBehaviour>();
-					for (int i = 0; i < testBehaviours.Length; i++)
-					{				
-						if (testBehaviours[i] is IDamageable)
-						{
-							recepient = (IDamageable)testBehaviours[i];
-							recepient.TakeDamage(power.Value);
-						}
-					}
+                    AttackApplicableBehaviour(hit.transform.gameObject.GetComponents<MonoBehaviour>());
 				}
 			}
 		}
 
 		attackTimer += Time.deltaTime;
 	}
+
+    public void AttackApplicableBehaviour(MonoBehaviour[] potentials)
+    {
+        testBehaviours = potentials;
+        for (int i = 0; i < testBehaviours.Length; i++)
+        {
+            if (testBehaviours[i] is IDamageable)
+            {
+                recepient = (IDamageable)testBehaviours[i];
+                recepient.TakeDamage(power.Value);
+            }
+        }
+    }
 }

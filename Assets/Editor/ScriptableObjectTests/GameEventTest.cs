@@ -9,16 +9,6 @@ public class GameEventTest
     bool eventInvoked = false;
     int testInt = 0;
 
-    public void testFnc()
-    {
-        eventInvoked = true;
-    }
-
-    public void testIntFnc(int val)
-    {
-        testInt = val;
-    }
-
     [UnityTest]
     public IEnumerator GameEventRaiseTest()
     {
@@ -28,7 +18,7 @@ public class GameEventTest
         testEvent.RegisterListener(testListener);
         //response is usually created by editor
         testListener.response = new UnityEngine.Events.UnityEvent();
-        testListener.response.AddListener(testFnc);
+        testListener.response.AddListener(() => { eventInvoked = true; });
 
         //Act
         testEvent.Raise();
@@ -48,7 +38,7 @@ public class GameEventTest
         testEvent.RegisterListener(testListener);
         //intResponse is usually created by editor
         testListener.intResponse = new IntEvent();
-        testListener.intResponse.AddListener(testIntFnc);
+        testListener.intResponse.AddListener((int x) => { testInt = x; });
 
         //Act
         testEvent.Raise(42);
@@ -68,7 +58,7 @@ public class GameEventTest
         testEvent.RegisterListener(testListener);
         //response is usually created by the editor
         testListener.response = new UnityEngine.Events.UnityEvent();
-        testListener.response.AddListener(testFnc);
+        testListener.response.AddListener(() => { eventInvoked = true; });
         testListener.gameEvent = testEvent;
 
         //Act 

@@ -40,6 +40,11 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
         onDamage = ScriptableObject.CreateInstance<GameEvent>();
     }
 
+    public void FillHP()
+    {
+        hp = maxHP.Value;
+    }
+
 	void OnDestroy()
 	{
 		if(enemyObjectPool)
@@ -54,7 +59,7 @@ public class EnemyBehaviour : MonoBehaviour, ITargetable, IDamageable {
 
 	void OnEnable()
 	{
-		hp = maxHP.Value;
+        FillHP();
 	}
 	void Update()
 	{

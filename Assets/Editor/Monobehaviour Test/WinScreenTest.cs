@@ -23,4 +23,10 @@ public class WinScreenTest
         Assert.AreEqual(true, testChild.activeInHierarchy);
         Assert.AreEqual(0, Time.timeScale);
     }
+
+    [TearDown]
+    public void AfterEachTest()
+    {
+        Time.timeScale = 1;
+    }
 }
