@@ -12,26 +12,41 @@ public class HealthBar : MonoBehaviour {
 	private Image healthimage;
 	// Use this for initialization
 	void Start () {
-		healthimage = GetComponentInChildren<Image>();
+        SetHealthImage();
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		if(active.Value)
-		{
-			for(int i = 0; i < transform.childCount; i++)
-			{
-				transform.GetChild(i).gameObject.SetActive(true);
-			}
-		}
-		else
-		{
-			for(int i = 0; i < transform.childCount; i++)
-			{
-				transform.GetChild(i).gameObject.SetActive(false);
-			}
-		}
-		healthimage.fillAmount = (float)health.Value/(float)maxHealth.Value;
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        ActivateOrDeactivate();
+        UpdateHealthImage();
+    }
+
+    public void SetHealthImage()
+    {
+        healthimage = GetComponentInChildren<Image>();
+    }
+
+    public void UpdateHealthImage()
+    {
+        healthimage.fillAmount = (float)health.Value / (float)maxHealth.Value;
+    }
+
+    public void ActivateOrDeactivate()
+    {
+        if (active.Value)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
 }
